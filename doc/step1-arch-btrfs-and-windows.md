@@ -28,7 +28,7 @@ Create file system, partitions, format to btrfs.
 fdisk -l
 fdisk /dev/nvme0n1
 
-# Windows has already 4 partitions, add swap and arch partitions
+# Windows has already 4 partitions. Add swap and arch partitions.
 # The final table should look something like
 
 # /dev/nvme0n1p1      2048    1023999   1021952   499M Windows recovery environment
@@ -88,7 +88,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 UUID=e157cc8d-99db-4242-b70a-822667126a9e       /mnt/btrfs              btrfs           noatime,ssd,space_cache 0 0
 
 # /dev/sda4 LABEL=arch
-UUID=e157cc8d-99db-4242-b70a-822667126a9e       /               btrfs           noatime,compress=lzo,ssd,autodefrag,space_cache,subvol=/ROOT    0 0
+UUID=e157cc8d-99db-4242-b70a-822667126a9e       /               btrfs           noatime,compress=lzo,ssd,autodefrag,space_cache,subvol=/root    0 0
 
 # /dev/nvme0n1p2
 UUID=6025-A40E          /boot/efi       vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro       0 2
@@ -171,7 +171,7 @@ useradd -m -g jamesbond -G users,wheel,storage,power,network,video -s /bin/bash 
 passwd jamesbond
 ```
 
-##### Network manager
+## Network manager
 
 Don't forget to make it here before the reboot.
 
@@ -180,7 +180,7 @@ pacman -S networkmanager
 systemctl enable NetworkManager
 ```
 
-##### Finally reboot
+## Finally reboot
 
 ```
 exit
