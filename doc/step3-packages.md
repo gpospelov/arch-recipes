@@ -226,8 +226,7 @@ pacman -Su libreoffice-still
 ## Texlive
 
 ```
-pacman -Su texlive-core
-pacman -Su texlive-latexextra pylatex
+pacman -Su texlive-core texlive-latexextra pylatex
 ```
 
 ## Other small utilities

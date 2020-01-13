@@ -19,7 +19,7 @@ pacman-key -v archlinux-2020.01.01-x86_64.iso.sig
 
 ```
 ping google.com
-pacman -Syy
+pacman -Syu
 pacman -Sy archlinux-keyring
 ```
 
@@ -146,7 +146,7 @@ passwd
 ## Mkinitcpio
 
 ```
-pacman -Su mkinitcpio, linux, linux-firmware
+pacman -Su mkinitcpio linux linux-firmware
 nano /etc/mkinitcpio.conf  # Remove fsck and add btrfs to HOOKS
 mkinitcpio -p linux
 ```
@@ -236,7 +236,7 @@ sudo snapper -c root create --description "Before first global update"
 
 ## How to roll back
 
-If you have killed the system and want's to get back: reboot from installation USB.
+If you have killed the system and want to get back: reboot from installation USB.
 
 ```
 mount -o subvol=root /dev/sda4 /mnt
