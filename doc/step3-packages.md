@@ -100,7 +100,7 @@ https://aur.archlinux.org/blockify.git
 git clone <repo>; cd <repo>; makepkg -si
 ```
 
-## For my own development needs
+## C++/Python development
 
 ```
 pacman -S python python-matplotlib python-pip python-numpy
@@ -122,9 +122,12 @@ systemctl enable cups-browsed.service
 
 ## Font issues on Intelli-j
 
-+ Settings > Appearance & Behavior > Appearance > Use custom font -> to size 22
-+ Settings > Appearance & Behavior > Editor > font -> to size 22
+```
+Settings > Appearance & Behavior > Appearance > Use custom font -> to size 22
+Settings > Appearance & Behavior > Editor > font -> to size 22
+
 obsolete>  -Dide.ui.scale=2.0 in Help | Edit Custom VM Options
+```
 
 ## Disabling mouse button
 
@@ -147,7 +150,6 @@ pointer = 1 2 3 4 5 6 7 0 0 10
 
 ```
 # Press F9 to activate top menu, in "Options/Configuration" remove crosses from "Use internal editor/viewer"
-
 # Don't forget to save configuration
 
 nano .bashrc
@@ -189,10 +191,10 @@ When add new Exchange account, type in your mail and password,
 Click "Continue" and "Manual config" without waiting for automatic config.
 Then setup normal IMAP, otherwise it will connect to Exchange server via commercial plugin.
 
-## NTFS
+## NTFS and exFat
 
 ```
-pacman -S ntfs-3g
+pacman -S ntfs-3g exfat-utils
 ```
 
 
@@ -210,10 +212,12 @@ pacman -Su ttf-dejavu
 ## Additional keyboard layout
 
 ```
-Settings / Input Devices / Kyboard ->Layout
+Settings / Input Devices / Keyboard -> Layout
 ```
 
 ## Libreoffice
+
+For me `libreoffice-fresh` experience was unsuccessful, so use `still` branch.
 
 ```
 pacman -Su libreoffice-still

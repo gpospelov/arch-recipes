@@ -1,6 +1,6 @@
 # Installing drivers and Plasma.
 
-Here we assume Lenovo T480S which has second Nvidia GPU on board.
+Here we assume Lenovo T480S with second Nvidia GPU on board.
 
 ## Add user rights
 ```
@@ -8,7 +8,7 @@ nano /etc/sudoers
 >> jamesbond ALL=(ALL) ALL
 ```
 
-## Package installation
+## Power consumption
 
 [TLP - ArchWiki](https://wiki.archlinux.org/index.php/TLP)
 
@@ -49,7 +49,9 @@ glxgears -info
 optirun glxgears -info
 ```
 
-## Desktop application
+## Desktop applications
+
+If you have huge ssd...
 
 ```
 pacman -S kde-applications
@@ -63,7 +65,7 @@ systemctl enable sshd.service
 systemctl start sshd.service
 ```
 
-## SDDM configuration
+## Display login manager configuration
 
 ```
 pacman -S sddm

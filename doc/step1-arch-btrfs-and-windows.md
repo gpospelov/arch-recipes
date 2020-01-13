@@ -1,11 +1,11 @@
 # Installing Arch + btrfs + dual boot with preinstalled Windows on Lenovo Thinkpad T480S.
 
 This is an instruction how to install Arch Linux with btrfs file system
-and dual boot for preinstalled Windows.
+and dual boot (arch, preinstalled Windows).
 Was checked on Lenovo T480s in January, 2020. None of special Thinkpad
 related tuning was required, all basic features (bluetooth, wifi, keyboard lighting and functional keys) were working.
 
-It is assumed that there is Windows installed on system,
+We assume further that there is Windows installed on system,
 that there is unallocated space on drive for future Arch and that we have
 Arch installation USB in hands.
 
@@ -22,7 +22,7 @@ pacman -Sy archlinux-keyring
 
 ## Partition and format
 
-Create file system, partitions, format to btrfs.
+Create file system, make partitions, format to btrfs.
 
 ```
 fdisk -l
@@ -40,8 +40,8 @@ fdisk /dev/nvme0n1
 
 mkfs.btrfs -f -L arch /dev/nvme0n1p6
 
-mkswap /dev/nvme0n1p7
-swapon /dev/nvme0n1p7
+mkswap /dev/nvme0n1p5
+swapon /dev/nvme0n1p5
 ```
 
 ## Prepare sub-volumes
@@ -54,7 +54,7 @@ btrfs subvolume create /mnt/btrfs/home
 btrfs subvolume create /mnt/btrfs/snapshots
 ```
 
-## Mount sub-volumes
+## Mount sub-volumes and Windows efi partition
 
 ```
 cd
@@ -206,7 +206,6 @@ snapper's roll back or automatic snapshot features.
 
 ```
 pacman -S snapper
-pacman -S grub-btrfs
 snapper -c root create-config /
 snapper -c home create-config /home
 btrfs subvolume delete /.snapshots
@@ -232,7 +231,7 @@ UUID=e157cc8d-99db-4242-b70a-822667126a9e       /.snapshots             btrfs   
 UUID=e157cc8d-99db-4242-b70a-822667126a9e       /home/.snapshots        btrfs           noatime,compress=lzo,ssd,discard,space_cache,subvol=snapshots/home_snaps        0 0
 ```
 
-## Making snapshot
+## How to make snapshot
 
 ```
 snapper list-configs
@@ -240,7 +239,7 @@ sudo snapper -c root list
 sudo snapper -c root create --description "Before first global update"
 ```
 
-## Rolling back snapshot
+## How to roll back
 
 If you have killed the system and want's to get back: reboot from installation USB.
 

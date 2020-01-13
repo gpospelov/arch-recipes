@@ -25,7 +25,7 @@ pacman -Sy archlinux-keyring
 
 ## Partition and format
 
-Create file system, partitions, format to btrfs.
+Create file system, make partitions, format to btrfs.
 
 ```
 fdisk -l
@@ -201,7 +201,6 @@ snapper's roll back or automatic snapshot features.
 
 ```
 pacman -S snapper
-pacman -S grub-btrfs
 snapper -c root create-config /
 snapper -c home create-config /home
 btrfs subvolume delete /.snapshots
@@ -227,7 +226,7 @@ UUID=e157cc8d-99db-4242-b70a-822667126a9e       /.snapshots             btrfs   
 UUID=e157cc8d-99db-4242-b70a-822667126a9e       /home/.snapshots        btrfs           noatime,compress=lzo,ssd,discard,space_cache,subvol=snapshots/home_snaps        0 0
 ```
 
-## Making snapshot
+## How to make snapshot
 
 ```
 snapper list-configs
@@ -235,7 +234,7 @@ sudo snapper -c root list
 sudo snapper -c root create --description "Before first global update"
 ```
 
-## Rolling back snapshot
+## How to roll back
 
 If you have killed the system and want's to get back: reboot from installation USB.
 
