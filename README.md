@@ -13,7 +13,7 @@ It reflects my own experience/needs with `arch` at the time of `archlinux-2020.0
 
 
 + [Installing Arch + btrfs on virtual machine.](doc/step1-arch-in-virtual-machine.md)
-+ Installing Arch + btrfs + dual boot with preinstalled Windows on Lenovo Thinkpad T480S.
++ [Installing Arch + btrfs + dual boot with preinstalled Windows on Lenovo Thinkpad T480S.](doc/step1-arch-btrfs-and-windows.md)
 + Installing drivers and plasma.
 + More packages to install.
   

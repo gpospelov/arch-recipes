@@ -1,20 +1,17 @@
-# Installing Arch + btrfs on virtual machine.
+# Installing Arch + btrfs + dual boot with preinstalled Windows on Lenovo Thinkpad T480S.
 
-Here we are installing Arch Linux in virtual machine (Oracle VM virtual box) installed in another Arch Linux.
+This is an instruction how to install Arch Linux with btrfs file system
+and dual boot for preinstalled Windows.
+Was checked on Lenovo T480s in January, 2020. None of special Thinkpad
+related tuning was required, all basic features (bluetooth, wifi, keyboard lighting and functional keys) were working.
 
-## Download Arch image
-
-+ Download latest image and checksum file [from one of the mirror](https://www.archlinux.org/download/).
-+ Assuming two files `archlinux-2020.01.01-x86_64.iso.sig` and `archlinux-2020.01.01-x86_64.iso` in same directory
-+ Check signature
-
-```
-pacman-key -v archlinux-2020.01.01-x86_64.iso.sig
-```
+It is assumed that there is Windows installed on system,
+that there is unallocated space on drive for future Arch and that we have
+Arch installation USB in hands.
 
 ## Starting installation
 
-+ Start virtual box, create new machine, boot from downloaded image
++ boot from usb disk
 + Check internet connection, update arch on usb
 
 ```
@@ -29,25 +26,29 @@ Create file system, partitions, format to btrfs.
 
 ```
 fdisk -l
-fdisk /dev/sda
+fdisk /dev/nvme0n1
 
-# create new GPT partition table using 'g'
-# create partitions 'n' to have something like
-# /dev/sda1  1M      bios boot (type 4)
-# /dev/sda2  8G      Linux Filesystem
-# /dev/sda3  32.6G   Linux Filesystem
+# Windows has already 4 partitions, add swap and arch partitions
+# The final table should look something like
 
-mkfs.btrfs -f -L arch /dev/sda3
+# /dev/nvme0n1p1      2048    1023999   1021952   499M Windows recovery environment
+# /dev/nvme0n1p2   1024000    1228799    204800   100M EFI System
+# /dev/nvme0n1p3   1228800    1261567     32768    16M Microsoft reserved
+# /dev/nvme0n1p4   1261568  380112895 378851328 180.7G Microsoft basic data
+# /dev/nvme0n1p5 963122224 1000215182  37092959   24G Linux filesystem
+# /dev/nvme0n1p6 380113968  589829167 209715200   100G Linux filesystem
 
-mkswap /dev/sda2
-swapon /dev/sda2
+mkfs.btrfs -f -L arch /dev/nvme0n1p6
+
+mkswap /dev/nvme0n1p7
+swapon /dev/nvme0n1p7
 ```
 
 ## Prepare sub-volumes
 
 ```
 mkdir /mnt/btrfs
-mount -t btrfs /dev/sda3  /mnt/btrfs
+mount -t btrfs /dev/nvme0n1p6  /mnt/btrfs
 btrfs subvolume create /mnt/btrfs/root
 btrfs subvolume create /mnt/btrfs/home
 btrfs subvolume create /mnt/btrfs/snapshots
@@ -60,12 +61,14 @@ cd
 umount /mnt/btrfs
 
 opt=noatime,compress=lzo,ssd,autodefrag,space_cache
-mount -o subvol=root,$opt /dev/sda3 /mnt
+mount -o subvol=root,$opt /dev/nvme0n1p6 /mnt
 mkdir /mnt/home
-mount -o subvol=home,$opt /dev/sda3 /mnt/home
+mount -o subvol=home,$opt /dev/nvme0n1p6 /mnt/home
+mkdir -p /mnt/boot/efi
+mount /dev/nvme0n1p2 /mnt/boot/efi
 ```
 
-## install base packages
+## Install base packages
 
 ```
 pacstrap /mnt base base-devel btrfs-progs
@@ -80,16 +83,15 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ## Edit partition table to become as
 
 ```
-# Static information about the filesystems.
-# See fstab(5) for details.
-
-# <file system> <dir> <type> <options> <dump> <pass>
 
 # /dev/sda4 LABEL=arch
 UUID=e157cc8d-99db-4242-b70a-822667126a9e       /mnt/btrfs              btrfs           noatime,ssd,space_cache 0 0
 
 # /dev/sda4 LABEL=arch
-UUID=e157cc8d-99db-4242-b70a-822667126a9e       /               btrfs           noatime,compress=lzo,ssd,autodefrag,space_cache,subvol=/root    0 0
+UUID=e157cc8d-99db-4242-b70a-822667126a9e       /               btrfs           noatime,compress=lzo,ssd,autodefrag,space_cache,subvol=/ROOT    0 0
+
+# /dev/nvme0n1p2
+UUID=6025-A40E          /boot/efi       vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro       0 2
 
 # /dev/sda4 LABEL=arch
 UUID=e157cc8d-99db-4242-b70a-822667126a9e       /home           btrfs           noatime,compress=lzo,ssd,autodefrag,space_cache,subvol=/home    0 0
@@ -120,8 +122,8 @@ rm /etc/localtime
 ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc --utc
 
-nano /etc/locale.gen  # uncomment en_US.UTF-8
 locale-gen
+nano /etc/locale.gen  # uncomment en_US.UTF-8
 
 nano /etc/locale.conf
 LANG=en_US.UTF-8
@@ -154,8 +156,10 @@ mkinitcpio -p linux
 ## Prepare bootloader
 
 ```
-pacman -S grub
-grub-install --target=i386-pc /dev/sda
+pacman -S intel-ucode
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch
+pacman -S os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
@@ -167,7 +171,7 @@ useradd -m -g jamesbond -G users,wheel,storage,power,network,video -s /bin/bash 
 passwd jamesbond
 ```
 
-## Network manager
+##### Network manager
 
 Don't forget to make it here before the reboot.
 
@@ -176,7 +180,7 @@ pacman -S networkmanager
 systemctl enable NetworkManager
 ```
 
-## Finally reboot
+##### Finally reboot
 
 ```
 exit
@@ -186,7 +190,8 @@ reboot
 
 <hr>
 
-At this point you have to reboot successfully to your installed Arch via grub.
+At this point you have to be able to reboot
+either to Windows or to Arch via grub.
 
 <hr>
 
