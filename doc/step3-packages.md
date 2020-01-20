@@ -1,9 +1,9 @@
 # Arch (post-install, packages)
 
-## Git
+## Git and firefox
 
 ```
-packman -S git
+packman -S git firefox
 ```
 
 ## Add color to packman
@@ -232,6 +232,6 @@ pacman -Su texlive-core texlive-latexextra pylatex
 ## Other small utilities
 
 ```
-pacman -S htop tree mlocate zip unzip
+pacman -S htop tree mlocate zip unzip wget
 sudo /sbin/updatedb  # for locate
 ```

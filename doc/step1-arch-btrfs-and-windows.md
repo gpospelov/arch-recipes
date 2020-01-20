@@ -16,7 +16,7 @@ Arch installation USB in hands.
 
 ```
 ping google.com
-pacman -Syu
+pacman -Syy
 pacman -Sy archlinux-keyring
 ```
 
@@ -122,8 +122,8 @@ rm /etc/localtime
 ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc --utc
 
-locale-gen
 nano /etc/locale.gen  # uncomment en_US.UTF-8
+locale-gen
 
 nano /etc/locale.conf
 LANG=en_US.UTF-8
@@ -167,7 +167,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ```
 groupadd jamesbond
-useradd -m -g jamesbond -G users,wheel,storage,power,network,video -s /bin/bash -c "Bond, James Bond"
+useradd -m -g jamesbond -G users,wheel,storage,power,network,video -s /bin/bash -c "Bond, James Bond" jamesbond
 passwd jamesbond
 ```
 
@@ -216,8 +216,8 @@ btrfs subvolume create /mnt/btrfs/snapshots/home_snaps
 mkdir /home/.snapshots
 mkdir /.snapshots
 
-mount -o subvol=snapshots/home_snaps /dev/sda4 /home/.snapshots
-mount -o subvol=snapshots/root_snaps /dev/sda4 /.snapshots
+mount -o subvol=snapshots/home_snaps /dev/nvme0n1p6 /home/.snapshots
+mount -o subvol=snapshots/root_snaps /dev/nvme0n1p6 /.snapshots
 
 ```
 
@@ -244,7 +244,7 @@ sudo snapper -c root create --description "Before first global update"
 If you have killed the system and want to get back: reboot from installation USB.
 
 ```
-mount -o subvol=root /dev/sda4 /mnt
+mount -o subvol=root /dev/nvmep0n1p6 /mnt
 arch-chroot /mnt /bin/bash
 mount /mnt/btrfs
 cd /mnt/btrfs

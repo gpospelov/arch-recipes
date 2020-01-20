@@ -19,7 +19,7 @@ pacman-key -v archlinux-2020.01.01-x86_64.iso.sig
 
 ```
 ping google.com
-pacman -Syu
+pacman -Syy
 pacman -Sy archlinux-keyring
 ```
 
@@ -163,7 +163,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ```
 groupadd jamesbond
-useradd -m -g jamesbond -G users,wheel,storage,power,network,video -s /bin/bash -c "Bond, James Bond"
+useradd -m -g jamesbond -G users,wheel,storage,power,network,video -s /bin/bash -c "Bond, James Bond" jamesbond
 passwd jamesbond
 ```
 
