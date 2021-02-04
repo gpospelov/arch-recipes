@@ -3,7 +3,7 @@
 ## Git and firefox
 
 ```
-packman -S git firefox
+packman -S git firefox base-devel
 ```
 
 ## Add color to packman
