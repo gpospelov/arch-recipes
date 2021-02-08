@@ -1,9 +1,35 @@
 # Arch (post-install, packages)
 
-## Git and firefox
+## Password for skypeforlinux, slack, etc
 
 ```
-packman -S git firefox base-devel
+pacman -S gnome-keyring seahorse
+
+# run seahorse, it will show one existing keying, opened already, with the name 'login'.
+# With the right mouse button mark it as 'Default'
+# Then all applications, supporting keyring, will store their passwords in login keyring.
+```
+
+## Firefox
+
+```
+packman -S firefox
+
+# install plugins privacy-badget, uBlock origin
+```
+
+## Basic development
+
+```
+packman -S git base-devel
+```
+
+## C++/Python development
+
+```
+pacman -S python python-matplotlib python-pip python-numpy
+pacman -S cmake boost gsl fftw libtiff valgrind
+pacman -S qt5 qtcreator
 ```
 
 ## Add color to packman
@@ -34,6 +60,26 @@ nano /etc/pacman.conf
 # Firefox font size
 > firefox about:config
 > layout.css.devToPixes -> -1.0 to 1.3
+
+```
+
+## Qt creator and HighDPI
+
+```
+# Advice from here https://wiki.archlinux.org/index.php/User:Ctag/HiDPI#Qt_Creator
+cp /usr/share/applications/org.qt-project.qtcreator.desktop ~/.local/share/applications
+Exec=env QT_SCALE_FACTOR=1 env QT_AUTO_SCREEN_SCALE_FACTOR=0 env QT_SCREEN_SCALE_FACTORS=1.75 qtcreator %F
+
+# For me the recipe above didn't work. Something worked, but what it was is unclear.
+# Now qtcreator always looks nice. It must be remembering it's settings somewhere.
+
+# either this
+Exec=QT_SCALE_FACTOR=1 QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCREEN_SCALE_FACTORS=1.75 qtcreator %F
+
+# or in .bashrc
+export QT_SCALE_FACTOR=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCREEN_SCALE_FACTORS=1.75
 
 ```
 
@@ -98,14 +144,6 @@ https://aur.archlinux.org/spotify.git
 git clone <repo>; cd <repo>; makepkg -si
 https://aur.archlinux.org/blockify.git
 git clone <repo>; cd <repo>; makepkg -si
-```
-
-## C++/Python development
-
-```
-pacman -S python python-matplotlib python-pip python-numpy
-pacman -S cmake boost gsl fftw libtiff valgrind
-pacman -S qt5 qtcreator
 ```
 
 ## Printing 
@@ -235,3 +273,7 @@ pacman -Su texlive-core texlive-latexextra pylatex
 pacman -S htop tree mlocate zip unzip wget
 sudo /sbin/updatedb  # for locate
 ```
+
+## Music player
+
+pacman -S elsa audacious audacity ardour pulseaudio-jack
