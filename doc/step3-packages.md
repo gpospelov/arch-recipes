@@ -63,6 +63,13 @@ nano /etc/pacman.conf
 
 ```
 
+## Dolphin file manager
+
+```
+Configure Dolphin / General / Miscellaneous - Switch between split views panes with tab key
+System Settings / Workspace Behaviour / General Behaviour - Double click to open files and folders
+```
+
 ## Qt creator and HighDPI
 
 ```
@@ -277,3 +284,11 @@ sudo /sbin/updatedb  # for locate
 ## Music player
 
 pacman -S elsa audacious audacity ardour pulseaudio-jack
+
+## Steam
+
+```
+uncomment the [multilib] section in /etc/pacman.conf
+pacman -S steam
+pacman -S lib32-nvidia-utils
+```
