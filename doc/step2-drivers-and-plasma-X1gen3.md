@@ -83,3 +83,16 @@ systemctl enable bluetooth.service
 ```
 pacman -S pulseaudio sof-firmware alsa-card-profiles alsa-lib alsa-plugins
 ```
+
+
+  515  sudo pacman -R pulseeffects
+  516  sudo pacman -R pipewire
+  517  sudo pacman -R gst-plugin-pipewire
+  518  sudo pacman -R pipewire-media-session
+  519  sudo pacman -R pipewire-pulse
+  520  sudo pacman -R pulseaudio-alsa
+  521  sudo pacman -R plasma-pa
+
+sudo pacman -Rcd pulseaudio
+
+sudo pacman -Syu pipewire-pulse

@@ -292,3 +292,24 @@ uncomment the [multilib] section in /etc/pacman.conf
 pacman -S steam
 pacman -S lib32-nvidia-utils
 ```
+
+## Wine
+
+```
+sudo pacman -S wine winetricks
+# run wincfg from terminal, adjust dpi to 240 for 4K
+winetricks corefonts
+```
+
+## Better fonts
+
+```
+mkdir /usr/share/fonts/WindowsFonts
+cp /windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts/
+chmod 644 /usr/share/fonts/WindowsFonts/*
+fc-cache --force
+```
+
+## AceMoney
+
+LC_ALL="ru_RU.CP1251" wine "/home/pospelov/.wine/drive_c/Program Files (x86)/AceMoney/AceMoney.exe"
