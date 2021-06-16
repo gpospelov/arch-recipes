@@ -254,3 +254,8 @@ btrfs subvol snapshot /mnt/btrfs/snapshots/root_snaps/3/snapshot /mnt/btrfs/root
 
 # reboot
 ```
+
+## Deleting snapshots
+
+sudo snapper --config root delete 2
+
