@@ -241,6 +241,12 @@ sudo snapper -c root list
 sudo snapper -c root create --description "Before first global update"
 ```
 
+## How to remove snapshots
+
+```
+sudo snapper -c root delete 8
+```
+
 ## How to roll back
 
 If you have killed the system and want to get back: reboot from installation USB.
