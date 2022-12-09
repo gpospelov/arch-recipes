@@ -313,3 +313,11 @@ fc-cache --force
 ## AceMoney
 
 LC_ALL="ru_RU.CP1251" wine "/home/pospelov/.wine/drive_c/Program Files (x86)/AceMoney/AceMoney.exe"
+
+## Find package installed by makepkg
+
+pacman -Qm teams-for-linux
+
+## Network
+
+pacman -S bind net-tools

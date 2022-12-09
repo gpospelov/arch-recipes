@@ -69,6 +69,30 @@ xrandr --auto
 journalctl -b --unit=sddm.service
 systemctl status display-manager.service
 ```
+
+## SDDM and scaling
+
+https://wiki.archlinux.org/title/SDDM
+
+```
+/etc/sddm.conf.d/dpi.conf
+
+[X11]
+ServerArguments=-nolisten tcp -dpi 94
+```
+
+and
+
+```
+/etc/sddm.conf.d/hidpi.conf
+
+[Wayland]
+EnableHiDPI=true
+
+[X11]
+EnableHiDPI=true
+```
+
 ## Bluetooth
 
 ```

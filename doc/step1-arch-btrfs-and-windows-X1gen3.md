@@ -133,7 +133,7 @@ LANG=en_US.UTF-8
 
 ## Setup hostname
 
-```
+``` 
 echo 'myhost' > /etc/hostname
 nano /etc/hosts
 127.0.0.1	localhost
