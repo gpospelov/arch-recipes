@@ -321,3 +321,40 @@ pacman -Qm teams-for-linux
 ## Network
 
 pacman -S bind net-tools
+
+# System load viewer
+
+- Widget from KDE store
+- ksysguard
+
+
+## aur yay
+
+```
+https://aur.archlinux.org/yay.git
+yay -Y --gendb # to generate a development package database 
+```
+
+## Other
+
+gwenview
+spectacle
+
+## Qt Creator config
+
+```
+# shortcuts
+Edit / Preferences / Environment /  Keyboard
+SwitchHeaderSource       alt-o
+ClangFormat FormatFile   Ctrl+Shift+I
+
+# Analyzer
+Edit / Preferences / Analyzer
+- make new custom diagnostic configuration
+  - Clang-Tidy Checks - Use .clang-tidy config file
+  - Clazy-Checks - disable non-pod-global-static
+
+# Editor
+  - indentation
+
+```
