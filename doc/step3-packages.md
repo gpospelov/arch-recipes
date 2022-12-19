@@ -321,3 +321,8 @@ pacman -Qm teams-for-linux
 ## Network
 
 pacman -S bind net-tools
+
+
+## Plasma wayland
+
+https://wiki.archlinux.org/title/KDE
