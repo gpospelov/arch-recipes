@@ -80,7 +80,3 @@ At the end of the file, insert the following config:
 ``
 
 https://pipeawk.com/index.php/2022/05/19/openssl-enable-legacy-renegotiation/
-
-## Rslsync doesn't start
-
-- [](https://bbs.archlinux.org/viewtopic.php?id=250813)

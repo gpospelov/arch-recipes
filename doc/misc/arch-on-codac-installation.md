@@ -2,7 +2,7 @@
 
 mkswap  /dev/nvme0n1p2
 mkfs.ext4 /dev/nvme0n1p3
- mkfs.fat -F 32 /dev/nvme0n1p1
+mkfs.fat -F 32 /dev/nvme0n1p1
 mount /mnt/nvme0n1p3 /mnt
 
 swapon /dev/nvme0n1p3 
