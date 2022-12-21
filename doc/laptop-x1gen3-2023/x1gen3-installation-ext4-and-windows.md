@@ -34,45 +34,22 @@ mkfs.ext4 /dev/nvme0n1p6
 
 mkswap /dev/nvme0n1p5
 swapon /dev/nvme0n1p5
-
-mount /dev/nvme0n1p6 /mnt
-
-mkdir -p /mnt/boot/efi
-
-mount /dev/nvme0n1p2 /mnt/boot/efi
-
-```
-
-
-## Prepare sub-volumes
-
-```
-mkdir /mnt/btrfs
-mount -t btrfs /dev/nvme0n1p6  /mnt/btrfs
-btrfs subvolume create /mnt/btrfs/root
-btrfs subvolume create /mnt/btrfs/home
-btrfs subvolume create /mnt/btrfs/snapshots
 ```
 
 ## Mount sub-volumes and Windows efi partition
 
 ```
-cd
-umount /mnt/btrfs
+mount /dev/nvme0n1p6 /mnt
 
-opt=noatime,compress=lzo,ssd,autodefrag,space_cache
-mount -o subvol=root,$opt /dev/nvme0n1p6 /mnt
-mkdir /mnt/home
-mount -o subvol=home,$opt /dev/nvme0n1p6 /mnt/home
 mkdir -p /mnt/boot/efi
+
 mount /dev/nvme0n1p2 /mnt/boot/efi
 ```
 
 ## Install base packages
 
 ```
-##pacstrap /mnt base base-devel btrfs-progs
-pacstrap /mnt base linux linux-firmware btrfs-progs
+pacstrap -K /mnt base base-devel linux linux-firmware
 ```
 
 ## Prepare partition table
@@ -133,11 +110,11 @@ LANG=en_US.UTF-8
 ## Setup hostname
 
 ``` 
-echo 'myhost' > /etc/hostname
+echo 'centauria' > /etc/hostname
 nano /etc/hosts
 127.0.0.1	localhost
 ::1		localhost
-127.0.1.1	myhost.localdomain	myhost
+127.0.1.1	myhost.localdomain	centauria
 ```
 
 ## Set root password
@@ -150,7 +127,6 @@ passwd
 
 ```
 pacman -Su mkinitcpio linux linux-firmware
-nano /etc/mkinitcpio.conf  # Remove fsck and add btrfs to HOOKS
 mkinitcpio -p linux
 ```
 
@@ -160,6 +136,8 @@ mkinitcpio -p linux
 pacman -S intel-ucode
 pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch
+nano /etc/default/grub
+# uncomment GRUB_DISABLE_OS_PROBER=false
 pacman -S os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
@@ -193,71 +171,3 @@ reboot
 
 At this point you have to be able to reboot
 either to Windows or to Arch via grub.
-
-<hr>
-
-Now comes snapper and btrfs final configuration.
-Please note, that this is a minimal configuration to be able 
-to make snapshots manually and be able
-to restore system to previous state using installation USB.
-I'm not registering snapshot in grub and not using advanced
-snapper's roll back or automatic snapshot features.
-
-## Snapper
-
-```
-pacman -S snapper
-snapper -c root create-config /
-snapper -c home create-config /home
-btrfs subvolume delete /.snapshots
-btrfs subvolume delete /home/.snapshots
-
-btrfs subvolume create /mnt/btrfs/snapshots/root_snaps
-btrfs subvolume create /mnt/btrfs/snapshots/home_snaps
-mkdir /home/.snapshots
-mkdir /.snapshots
-
-mount -o subvol=snapshots/home_snaps /dev/nvme0n1p6 /home/.snapshots
-mount -o subvol=snapshots/root_snaps /dev/nvme0n1p6 /.snapshots
-
-```
-
-Add lines to /etc/fstab and reboot
-
-```
-# /dev/sda4 LABEL=arch
-UUID=e157cc8d-99db-4242-b70a-822667126a9e       /.snapshots             btrfs           noatime,compress=lzo,ssd,discard,space_cache,subvol=snapshots/root_snaps        0 0
-
-# /dev/sda4 LABEL=arch
-UUID=e157cc8d-99db-4242-b70a-822667126a9e       /home/.snapshots        btrfs           noatime,compress=lzo,ssd,discard,space_cache,subvol=snapshots/home_snaps        0 0
-```
-
-## How to make snapshot
-
-```
-snapper list-configs
-sudo snapper -c root list
-sudo snapper -c root create --description "Before first global update"
-```
-
-## How to remove snapshots
-
-```
-sudo snapper -c root delete 8
-```
-
-## How to roll back
-
-If you have killed the system and want to get back: reboot from installation USB.
-
-```
-mount -o subvol=root /dev/nvmep0n1p6 /mnt
-arch-chroot /mnt /bin/bash
-mount /mnt/btrfs
-cd /mnt/btrfs
-mv root root.old
-
-btrfs subvol snapshot /mnt/btrfs/snapshots/root_snaps/3/snapshot /mnt/btrfs/root
-
-# reboot
-```
