@@ -62,5 +62,5 @@ systemctl start sshd.service
 
 ## Other packages
 
-yay -S keepassxc mc visual-studio-code-bin libreoffice-still gwenview spectacle
+yay -S konsole keepassxc mc visual-studio-code-bin libreoffice-still gwenview spectacle kate
 
