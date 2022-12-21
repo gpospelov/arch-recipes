@@ -1,5 +1,6 @@
 
 
+```
 mkswap  /dev/nvme0n1p2
 mkfs.ext4 /dev/nvme0n1p3
 mkfs.fat -F 32 /dev/nvme0n1p1
@@ -44,3 +45,4 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch
 pacman -S os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 
+```
