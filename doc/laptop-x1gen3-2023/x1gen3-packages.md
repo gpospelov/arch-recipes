@@ -28,11 +28,14 @@ systemctl enable sddm.service
 
 https://wiki.archlinux.org/title/SDDM
 
+96 - scale 100
+144 - scale 150
+
 ```
 /etc/sddm.conf.d/dpi.conf
 
 [X11]
-ServerArguments=-nolisten tcp -dpi 96
+ServerArguments=-dpi 144
 ```
 
 and
@@ -54,4 +57,10 @@ pacman -S openssh
 systemctl enable sshd.service
 systemctl start sshd.service
 ```
+
+## Install yay
+
+## Other packages
+
+yay -S keepassxc mc visual-studio-code-bin libreoffice-still gwenview spectacle
 
