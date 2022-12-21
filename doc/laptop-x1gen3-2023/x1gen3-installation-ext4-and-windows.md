@@ -1,4 +1,4 @@
-# Installing Arch + btrfs + dual boot with preinstalled Windows on Lenovo Thinkpad T480S.
+# Installing Arch + btrfs + dual boot with preinstalled Windows on Lenovo Thinkpad X1gen3.
 
 ## Starting installation
 
@@ -30,11 +30,19 @@ fdisk /dev/nvme0n1
 # /dev/nvme0n1p5 963122224 1000215182  37092959   24G Linux filesystem
 # /dev/nvme0n1p6 380113968  589829167 209715200   100G Linux filesystem
 
-mkfs.btrfs -f -L arch /dev/nvme0n1p6
+mkfs.ext4 /dev/nvme0n1p6
 
 mkswap /dev/nvme0n1p5
 swapon /dev/nvme0n1p5
+
+mount /dev/nvme0n1p6 /mnt
+
+mkdir -p /mnt/boot/efi
+
+mount /dev/nvme0n1p2 /mnt/boot/efi
+
 ```
+
 
 ## Prepare sub-volumes
 
