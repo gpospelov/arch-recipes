@@ -61,20 +61,20 @@ Edit ` /etc/ssl/openssl.cnf`
 ```
 At the very beginning of the file, insert the following config:
 
-    openssl_conf = openssl_init
+    reboot
 
 At the end of the file, insert the following config:
 
-    [openssl_init]
-    ssl_conf = ssl_sect
+[openssl_init]
+ssl_conf = ssl_sect
 
-    [ssl_sect]
-    system_default = system_default_sect
+[ssl_sect]
+system_default = system_default_sect
 
-    [system_default_sect]
-    MinProtocol = TLSv1.2
-    CipherString = DEFAULT@SECLEVEL=1
-    Options = UnsafeLegacyRenegotiation
+[system_default_sect]
+MinProtocol = TLSv1.2
+CipherString = DEFAULT@SECLEVEL=1
+Options = UnsafeLegacyRenegotiation
 
 
 ``
