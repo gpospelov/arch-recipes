@@ -247,6 +247,15 @@ too small menu of VSCode
 ## Qt creator config
 
 ```
+# Enable plugins
+ToDo
+Beautifier
+
+# Editor
+  - indentation
+
+# Go to C++ General and change indentation/tabs to 2 spaces
+
 # Beautifier
 Edit / Preferences / Beautifier / CLang format
 Use customized style "iter"
@@ -264,8 +273,6 @@ Edit / Preferences / Analyzer
   - Clang-Tidy Checks - Use .clang-tidy config file
   - Clazy-Checks - disable non-pod-global-static
 
-# Editor
-  - indentation
 
 ```
 
