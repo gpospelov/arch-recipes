@@ -222,7 +222,7 @@ Scaling:
 - QT_SCALE_FACTOR=1 QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCREEN_SCALE_FACTORS=1.5
 
 
-## Optimal HighDPI settings Summary
+## Optimal Qt creator HighDPI settings
 
 ** Variant 1**
 
@@ -243,3 +243,29 @@ Better toolbar layout
 - firefox layout.css.devPixelsPerPx -> -1.0 -> 1.3
 
 too small menu of VSCode
+
+## Qt creator config
+
+```
+# Beautifier
+Edit / Preferences / Beautifier / CLang format
+Use customized style "iter"
+
+# shortcuts
+Edit / Preferences / Environment /  Keyboard
+SwitchHeaderSource       alt-o
+ClangFormat FormatFile   Ctrl+Shift+I
+GoTo                     Ctrl+G
+FollowSymbolUnderCursor  F12
+
+# Analyzer
+Edit / Preferences / Analyzer
+- make new custom diagnostic configuration
+  - Clang-Tidy Checks - Use .clang-tidy config file
+  - Clazy-Checks - disable non-pod-global-static
+
+# Editor
+  - indentation
+
+```
+
