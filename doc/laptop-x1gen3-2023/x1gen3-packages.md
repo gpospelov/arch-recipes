@@ -138,6 +138,26 @@ https://aur.archlinux.org/yay.git
 yay -S visual-studio-code-bin
 
 
+### Extensions
+
+- Markdown All In One, Yu Zhang
+- Markdown PDF, yzane
+
+- C/C++ IntelliSence Microsoft
+- Clang-Format, Xavier Hellauer
+- Clang-Tidy, notskm
+- CMake, twxs
+- CMake Tools, Microsoft
+- Pylance Microsoft
+- Python, Microsoft
+- Remote-SSH, Microsoft
+- Remote Explorer Microsoft
+- XML tools (Josh Johnson)
+
+Dokcer (Microsoft), GitGraph (mhutchie), GitKraken Authentification (GitKraken), IntelliCode (Microsoft), LatexWorkshop (James Yu), Markdown Lint (David Anson)
+
+
+
 ## Other packages
 
 yay -S konsole okular smartgit keepassxc mc visual-studio-code-bin libreoffice-still gwenview spectacle kate gimp inkscape
