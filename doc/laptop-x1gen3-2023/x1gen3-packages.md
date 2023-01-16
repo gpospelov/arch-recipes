@@ -80,6 +80,11 @@ With `ServerArguments=-dpi 96` I set System Settings / Display to the scale 150
 pacman -S openssh
 systemctl enable sshd.service
 systemctl start sshd.service
+
+# permissions for user .ssh
+chmod 700 .ssh/
+chmod 644 .ssh/id_rsa.pub 
+chmod 600 .ssh/id_rsa
 ```
 
 ## Basic development
