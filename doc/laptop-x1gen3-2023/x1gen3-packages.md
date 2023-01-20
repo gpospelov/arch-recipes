@@ -298,6 +298,7 @@ Edit / Preferences / Analyzer
   - Clang-Tidy Checks - Use .clang-tidy config file
   - Clazy-Checks - disable non-pod-global-static
 
+cppcoreguidelines-pro-type-reinterpret-cast
 
 ```
 
