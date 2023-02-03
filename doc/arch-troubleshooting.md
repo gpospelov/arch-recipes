@@ -80,3 +80,14 @@ Options = UnsafeLegacyRenegotiation
 ``
 
 https://pipeawk.com/index.php/2022/05/19/openssl-enable-legacy-renegotiation/
+
+
+## Perl locale warning (LC_ALL="")
+
+Simple regeneration of the locale doesn't work, what is worked was
+
+```
+add line
+LC_ALL=en_US.UTF-8
+
+/etc/environment
