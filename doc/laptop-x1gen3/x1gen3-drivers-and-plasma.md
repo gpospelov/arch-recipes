@@ -50,6 +50,11 @@ pacman -S okular konsole kate mc gimp inkscape
 pacman -S openssh
 systemctl enable sshd.service
 systemctl start sshd.service
+
+chmod 700 .ssh/
+chmod 644 .ssh/id_rsa.pub
+chmod 600 .ssh/id_rsa
+chmod 644 .ssh/config 
 ```
 
 ## Display login manager configuration

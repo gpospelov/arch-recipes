@@ -110,12 +110,28 @@ systemctl --user enable rslsync
 pacman -S keepassxxc
 ```
 
-#### Code
+## Code
 
 ```
 pacman -S code
 ```
 
+### Extensions
+
+- C/C++ IntelliSence Microsoft
+- Clang-Format, Xavier Hellauer
+- Clang-Tidy, notskm
+- CMake, twxs
+- CMake Tools, Microsoft
+- Markdown All In One, Yu Zhang
+- Markdown PDF, yzane
+- Pylance Microsoft
+- Python, Microsoft
+- Remote-SSH, Microsoft
+- Remote Explorer Microsoft
+- XML tools (Josh Johnson)
+
+Dokcer (Microsoft), GitGraph (mhutchie), GitKraken Authentification (GitKraken), IntelliCode (Microsoft), LatexWorkshop (James Yu), Markdown Lint (David Anson)
 #### Boostnote
 
 ```
@@ -283,7 +299,8 @@ sudo /sbin/updatedb  # for locate
 
 ## Music player
 
-pacman -S elsa audacious audacity ardour pulseaudio-jack
+#pacman -S elsa audacious audacity ardour pulseaudio-jack
+strawbery, elise
 
 ## Steam
 
@@ -322,7 +339,52 @@ pacman -Qm teams-for-linux
 
 pacman -S bind net-tools
 
+# System load viewer
 
-## Plasma wayland
+- Widget from KDE store
+- ksysguard
 
-https://wiki.archlinux.org/title/KDE
+
+## aur yay
+
+```
+https://aur.archlinux.org/yay.git
+yay -Y --gendb # to generate a development package database 
+```
+
+## Other
+
+gwenview
+spectacle
+
+## Qt Creator config
+
+```
+# Beautifier
+Edit / Preferences / Beautifier / CLang format
+Use customized style "iter"
+
+# shortcuts
+Edit / Preferences / Environment /  Keyboard
+SwitchHeaderSource       alt-o
+ClangFormat FormatFile   Ctrl+Shift+I
+GoTo                     Ctrl+G
+FollowSymbolUnderCursor  F12
+
+# Analyzer
+Edit / Preferences / Analyzer
+- make new custom diagnostic configuration
+  - Clang-Tidy Checks - Use .clang-tidy config file
+  - Clazy-Checks - disable non-pod-global-static
+
+# Editor
+  - indentation
+
+```
+
+## Cpupower
+
+https://github.com/google/benchmark/blob/main/docs/reducing_variance.md
+
+sudo cpupower frequency-set --governor performance
+cpupower frequency-info -o proc
