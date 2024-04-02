@@ -170,7 +170,8 @@ yay -S konsole okular smartgit keepassxc mc visual-studio-code-bin libreoffice-s
 ## Texlive
 
 ```
-pacman -Su texlive-core texlive-latexextra texlive-xetex
+yay -S ttf-ms-fonts
+pacman -Su texlive-core texlive-latexextra texlive-xetex texlive-plaingeneric texlive-fontsrecommended  texlive-fontsextra 
 ```
 
 ## COnfiguring konsole
