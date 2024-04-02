@@ -167,6 +167,12 @@ Dokcer (Microsoft), GitGraph (mhutchie), GitKraken Authentification (GitKraken),
 
 yay -S konsole okular smartgit keepassxc mc visual-studio-code-bin libreoffice-still gwenview spectacle kate gimp inkscape
 
+## Texlive
+
+```
+pacman -Su texlive-core texlive-latexextra texlive-xetex
+```
+
 ## COnfiguring konsole
 
 Settings / Toolbar shown / Main toolbar -> hide
@@ -254,7 +260,9 @@ Scaling:
 - sddm `ServerArguments=-dpi 96`
 - Display setting Global Scale 150%
 - qtcreator editor font 10
-- QT_SCALE_FACTOR=1 QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCREEN_SCALE_FACTORS=1.0 in application start icon menu
+- Environment: QT_SCALE_FACTOR=1 QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCREEN_SCALE_FACTORS=1.0 in application start icon menu
+- Arguments: QT_SCREEN_SCALE_FACTORS=1.0 qtcreator %F
+
 - firefox layout.css.devPixelsPerPx -> -1.0
 
 Reasonable menu of VSCode, SmartGit
