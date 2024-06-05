@@ -91,3 +91,15 @@ add line
 LC_ALL=en_US.UTF-8
 
 /etc/environment
+
+## Screwed up file system
+
+```
+mount /dev/nvmep0n1p6 /mnt
+# fsck -r /dev/nvme0n1p6
+#arch-chroot /mnt
+
+pacman --root /mnt --cache /mnt/var/cache/pacman/pkg -Syu
+# rm /mnt/var/lib/pacman/db.lock
+
+```
