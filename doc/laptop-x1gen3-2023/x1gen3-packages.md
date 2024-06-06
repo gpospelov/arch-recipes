@@ -278,36 +278,3 @@ Better toolbar layout
 
 too small menu of VSCode
 
-## Qt creator config
-
-```
-# Enable plugins
-ToDo
-Beautifier
-
-# Editor
-  - indentation
-
-# Go to C++ General and change indentation/tabs to 2 spaces
-
-# Beautifier
-Edit / Preferences / Beautifier / CLang format
-Use customized style "iter"
-
-# shortcuts
-Edit / Preferences / Environment /  Keyboard
-SwitchHeaderSource       alt-o
-ClangFormat FormatFile   Ctrl+Shift+I
-GoTo                     Ctrl+G
-FollowSymbolUnderCursor  F12
-
-# Analyzer
-Edit / Preferences / Analyzer
-- make new custom diagnostic configuration
-  - Clang-Tidy Checks - Use .clang-tidy config file
-  - Clazy-Checks - disable non-pod-global-static
-
-cppcoreguidelines-pro-type-reinterpret-cast
-
-```
-
