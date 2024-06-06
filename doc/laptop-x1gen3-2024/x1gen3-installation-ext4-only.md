@@ -18,14 +18,27 @@ timedatectl set-ntp true
 fdisk -l
 fdisk /dev/nvme1n1
 
-/dev/nvme1n1p1     2048    411647    409600   200M EFI System
-/dev/nvme1n1p2   411648  33966079  33554432    16G Linux swap
-/dev/nvme1n1p3 33966080 500117503 466151424 222.3G Linux filesystem
-
 mkfs.fat -F 32 /dev/nvme1n1p1
 mkswap /dev/nvme1n1p2
 swapon /dev/nvme1n1p2
 mkfs.ext4 /dev/nvme1n1p3
+```
+
+Final version of /etc/fstab
+
+```
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/nvme0n1p3
+UUID=68312b5d-92e0-4324-9528-ee9156e3918e       /               ext4            rw,relatime     0 1
+
+# /dev/nvme0n1p1
+UUID=F5E1-A6AB          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro        0 2
+
+# /dev/nvme0n1p2
+UUID=fb927af0-6045-4feb-9b76-99960ba0198e       none            swap            defaults        0 0
+
+# /dev/nvme1n1p1
+UUID=f124c0e1-baad-46f2-a394-94e3fe90fa45       /mnt/space              ext4            rw,relatime     0 1
 ```
 
 ## Mount volumes

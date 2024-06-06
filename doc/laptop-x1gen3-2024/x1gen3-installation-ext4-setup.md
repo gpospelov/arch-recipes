@@ -51,8 +51,15 @@ pacman -S konsole gwenview kcolorchooser dolphin okular
 ## Other small utilities
 
 ```
-pacman -S htop tree mlocate zip unzip wget tokei
+pacman -S htop tree mlocate zip unzip wget tokei pacman-contrib
 sudo /sbin/updatedb  # for locate
+```
+
+## Additional keyboard layout
+
+```
+Settings / Keyboard -> Layout
+Main shortcut Win+Space
 ```
 
 ## Firefox
@@ -81,7 +88,10 @@ Settings > Colors&Themes > Global Theme > Login SDDM
 # Do not let windows appear at startup
 > Settings /Session / Desktop Session / (disable) Start with an empty session
 
-## konsole
+# Remove animation
+Settings > WIndows Management / Virtual Desktop Switching Animation
+
+# konsole
 Right-mouse-bottom on a toolbar / Toolbar shown / Main toolbar -> hide
 
 ```
@@ -108,7 +118,7 @@ pacman -S ntfs-3g exfat-utils
 ## Basic development
 
 ```
-packan -S git base-devel
+pacman -S git base-devel
 ```
 
 ## Install yay
@@ -118,6 +128,19 @@ cd software
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
+```
+
+## Rslsync
+
+```
+yay -S rslsync
+
+rslsync --dump-sample-config > ~/.config/rslsync/rslsync.conf
+> edit device_name and storage_path  (/home/jamesbond/.sync)
+
+systemctl --user start rslsync
+systemctl --user enable rslsync 
+
 ```
 
 ## Tuning Midnight Commander
@@ -145,7 +168,21 @@ yay -S vscode
 
 ## Gitkraken
 
+yay -S gitkraken
 
+## Sound (pipewire based, not pulseaudio)
+
+sof-firmware alsa-card-profiles alsa-lib alsa-plugins
+pipewire-alsa
+
+systemctl --user start pipewire
+
+## skype, teams
+
+```
+yay -s skype
+yay -s teams
+```
 
 ## Music player
 
@@ -153,5 +190,43 @@ pacman -S elisa
 
 ## Development
 
-cmake benchmark gtest libxml2 gdb valgrind gperf
+cmake benchmark gtest libxml2 gdb valgrind gperf gcc clang
 qt5 qtcreator
+
+## Qt creator config
+
+```
+# Enable plugins
+ToDo
+Beautifier
+
+# Editor
+  - indentation
+
+ettings > TextEditor > Display > Display right margin at column
+
+# Settings Testing / Automatically Riun All
+
+# Go to C++ General and change indentation/tabs to 2 spaces
+
+# Beautifier
+Edit / Preferences / Beautifier / CLang format
+Use customized style "iter"
+
+# shortcuts
+Edit / Preferences / Environment /  Keyboard
+SwitchHeaderSource       alt-o (it was F4, remember SideBarOpenDocument conflicts with alt-0)
+ClangFormat FormatFile   Ctrl+Shift+I (it was no, remember CppEditor.OpenIncludeHierarchy and Help.index conflicts with Ctrl-Shift-o)
+GoTo                     Ctrl+G
+FollowSymbolUnderCursor  F12 (was F2)
+
+# Analyzer
+Edit / Preferences / Analyzer
+- make new custom diagnostic configuration
+  - Clang-Tidy Checks - Use .clang-tidy config file
+  - Clazy-Checks - disable non-pod-global-static
+
+cppcoreguidelines-pro-type-reinterpret-cast
+
+```
+

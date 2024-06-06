@@ -61,7 +61,7 @@ Edit ` /etc/ssl/openssl.cnf`
 ```
 At the very beginning of the file, insert the following config:
 
-    reboot
+openssl_conf = openssl_init
 
 At the end of the file, insert the following config:
 
@@ -75,6 +75,19 @@ system_default = system_default_sect
 MinProtocol = TLSv1.2
 CipherString = DEFAULT@SECLEVEL=1
 Options = UnsafeLegacyRenegotiation
+
+
+
+    [openssl_init]
+    ssl_conf = ssl_sect
+
+    [ssl_sect]
+    system_default = system_default_sect
+
+    [system_default_sect]
+    MinProtocol = TLSv1.2
+    CipherString = DEFAULT@SECLEVEL=1
+    Options = UnsafeLegacyRenegotiation
 
 
 ``
@@ -101,5 +114,31 @@ mount /dev/nvmep0n1p6 /mnt
 
 pacman --root /mnt --cache /mnt/var/cache/pacman/pkg -Syu
 # rm /mnt/var/lib/pacman/db.lock
+
+```
+
+## Yay and package sum
+
+Yay installation doesn't pass because of failed checksum (rslsync)
+
+```
+yay -Ss pacman-contrib
+cd /home/user/.cache/yay/rslsync
+updpkgsums
+makepkg -si
+```
+
+## Reboot of docked laptio goest to sleep
+
+I solved this problem by editing /etc/UPower/UPower.conf and changing IgnoreLid=false to IgnoreLid=true at the end of the file.
+
+# Adding new partition
+
+```
+# verifies your current version of /etc/fstab without reboot
+findmnt --verify --verbose
+
+# gives you UUID of your partition
+blkid /dev/nvme1n1p1
 
 ```
