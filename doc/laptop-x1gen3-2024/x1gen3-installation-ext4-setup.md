@@ -119,6 +119,8 @@ pacman -S ntfs-3g exfat-utils
 
 ```
 pacman -S git base-devel
+
+
 ```
 
 ## Install yay
@@ -207,6 +209,8 @@ Settings > TextEditor > Display > Display right margin at column
 
 Settings > Built And Run > General > [x] Always save before the build
 
+Settings > Kits > Manual(Desktop) > Compiler C/C++ -> gcc
+
 # Settings Testing / Automatically Run All
 
 # Go to C++ General and change indentation/tabs to 2 spaces
@@ -230,9 +234,15 @@ Edit / Preferences / Analyzer
 
 cppcoreguidelines-pro-type-reinterpret-cast
 
-PVXS_DIR=/home/pospelov/development/iter/extern/epics/pvxs
-EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base
-EPICS_HOST_ARCH=$(${EPICS_BASE}/startup/EpicsHostArch)
+PROJECTS=/home/pospelov/development/iter/projects
+EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base/
+EPICS_HOST_ARCH=linux-x86_64
+PVXS_DIR=/home/pospelov/development/iter/extern/epics/pvxs/
+
+EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base/
+PROJECTS=/home/pospelov/development/iter/projects
+EPICS_HOST_ARCH=linux-x86_64
+LD_LIBRARY_PATH=${PROJECTS}/sequencer-plugin-epics/build-debug/lib/sequencer/plugins:${PROJECTS}/sequencer-plugin-control/build-debug/lib/sequencer/plugins:${PROJECTS}/sequencer-plugin-mathexpr/build-debug/lib/sequencer/plugins:${EPICS_BASE}/lib/${EPICS_HOST_ARCH}:${PVXS_DIR}/lib/${EPICS_HOST_ARCH}
 
 ```
 
