@@ -51,7 +51,7 @@ pacman -S konsole gwenview kcolorchooser dolphin okular
 ## Other small utilities
 
 ```
-pacman -S htop tree mlocate zip unzip wget tokei pacman-contrib
+pacman -S htop tree mlocate zip unzip wget tokei pacman-contrib screen
 sudo /sbin/updatedb  # for locate
 ```
 
@@ -203,9 +203,11 @@ Beautifier
 # Editor
   - indentation
 
-ettings > TextEditor > Display > Display right margin at column
+Settings > TextEditor > Display > Display right margin at column
 
-# Settings Testing / Automatically Riun All
+Settings > Built And Run > General > [x] Always save before the build
+
+# Settings Testing / Automatically Run All
 
 # Go to C++ General and change indentation/tabs to 2 spaces
 
@@ -227,6 +229,10 @@ Edit / Preferences / Analyzer
   - Clazy-Checks - disable non-pod-global-static
 
 cppcoreguidelines-pro-type-reinterpret-cast
+
+PVXS_DIR=/home/pospelov/development/iter/extern/epics/pvxs
+EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base
+EPICS_HOST_ARCH=$(${EPICS_BASE}/startup/EpicsHostArch)
 
 ```
 
