@@ -120,6 +120,14 @@ pacman -S ntfs-3g exfat-utils
 ```
 pacman -S git base-devel
 
+.gitignore
+/.gitignore
+target
+/CMakeLists.txt.user
+build
+
+
+git config --global core.excludesfile ~/.gitignore
 
 ```
 
@@ -234,7 +242,9 @@ Edit / Preferences / Analyzer
 
 cppcoreguidelines-pro-type-reinterpret-cast
 
+> Settings
 PROJECTS=/home/pospelov/development/iter/projects
+MYBUILD=build/Desktop-Debug
 EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base/
 EPICS_HOST_ARCH=linux-x86_64
 PVXS_DIR=/home/pospelov/development/iter/extern/epics/pvxs/
