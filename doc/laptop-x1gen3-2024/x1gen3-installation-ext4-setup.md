@@ -120,6 +120,14 @@ pacman -S ntfs-3g exfat-utils
 ```
 pacman -S git base-devel
 
+.gitignore
+/.gitignore
+target
+/CMakeLists.txt.user
+build
+
+
+git config --global core.excludesfile ~/.gitignore
 
 ```
 
@@ -207,21 +215,27 @@ Beautifier
 
 Settings > TextEditor > Display > Display right margin at column
 
-Settings > Built And Run > General > [x] Always save before the build
+Settings > Built And Run > General > [x] Save All files before the build
 
 Settings > Kits > Manual(Desktop) > Compiler C/C++ -> gcc
 
 # Settings Testing / Automatically Run All
 
 # Go to C++ General and change indentation/tabs to 2 spaces
+  Use Custom Settings, new profile COA
+  AccessModifierOffset: -2
+  IndentWidth:     2
 
 # Beautifier
 Edit / Preferences / Beautifier / CLang format
 Use customized style "iter"
 
+# Git
+Setting / Version Control / Git / Instant Blame
+
 # shortcuts
 Edit / Preferences / Environment /  Keyboard
-SwitchHeaderSource       alt-o (it was F4, remember SideBarOpenDocument conflicts with alt-0)
+SwitchHeaderSource       alt-o (it was F4, remember SideBarOpenDocument conflicts with alt-o)
 ClangFormat FormatFile   Ctrl+Shift+I (it was no, remember CppEditor.OpenIncludeHierarchy and Help.index conflicts with Ctrl-Shift-o)
 GoTo                     Ctrl+G
 FollowSymbolUnderCursor  F12 (was F2)
@@ -234,7 +248,9 @@ Edit / Preferences / Analyzer
 
 cppcoreguidelines-pro-type-reinterpret-cast
 
+> Settings
 PROJECTS=/home/pospelov/development/iter/projects
+MYBUILD=build/Desktop-Debug
 EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base/
 EPICS_HOST_ARCH=linux-x86_64
 PVXS_DIR=/home/pospelov/development/iter/extern/epics/pvxs/
@@ -242,6 +258,7 @@ PVXS_DIR=/home/pospelov/development/iter/extern/epics/pvxs/
 EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base/
 PROJECTS=/home/pospelov/development/iter/projects
 EPICS_HOST_ARCH=linux-x86_64
+MYBUILD=build/Desktop-Debug
 LD_LIBRARY_PATH=${PROJECTS}/sequencer-plugin-epics/build-debug/lib/sequencer/plugins:${PROJECTS}/sequencer-plugin-control/build-debug/lib/sequencer/plugins:${PROJECTS}/sequencer-plugin-mathexpr/build-debug/lib/sequencer/plugins:${EPICS_BASE}/lib/${EPICS_HOST_ARCH}:${PVXS_DIR}/lib/${EPICS_HOST_ARCH}
 
 ```
