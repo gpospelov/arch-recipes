@@ -51,7 +51,7 @@ pacman -S konsole gwenview kcolorchooser dolphin okular
 ## Other small utilities
 
 ```
-pacman -S htop tree mlocate zip unzip wget tokei pacman-contrib screen
+pacman -S htop tree mlocate zip unzip wget tokei pacman-contrib screen ncdu
 sudo /sbin/updatedb  # for locate
 ```
 
@@ -74,7 +74,7 @@ packman -S firefox
 
 ```
 # Hidden pager
-Settings > Workspace Benabior/Virtual desktop -> add 6 desktops
+Settings > Window management/Virtual desktop -> add 6 desktops
 
 # Shorcuts for desktop switching
 Settings > keyboard> Shortcuts >  KWin 
@@ -93,6 +93,7 @@ Settings > WIndows Management / Virtual Desktop Switching Animation
 
 # konsole
 Right-mouse-bottom on a toolbar / Toolbar shown / Main toolbar -> hide
+Right mouse button/ Menu/Settings/Configure Keyboard Shortcuts -> Remove F10
 
 ```
 

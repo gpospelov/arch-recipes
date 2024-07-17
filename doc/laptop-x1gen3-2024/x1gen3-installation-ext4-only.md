@@ -45,10 +45,13 @@ UUID=f124c0e1-baad-46f2-a394-94e3fe90fa45       /mnt/space              ext4    
 
 ```
 mount /dev/nvme1n1p3 /mnt
-mkdir -p /mnt/boot/efi
+#mkdir -p /mnt/boot/efi 
+mkdir -p /mnt/boot
 
-mount /dev/nvme0n1p2 /mnt/boot/efi
-mount --mkdir /dev/efi_system_partition /mnt/boot
+#mount /dev/nvme0n1p2 /mnt/boot/efi
+mount /dev/nvme0n1p1 /mnt/boot
+
+#mount --mkdir /dev/efi_system_partition /mnt/boot
 ```
 
 ## Install base packages, prepare partition table
@@ -56,7 +59,6 @@ mount --mkdir /dev/efi_system_partition /mnt/boot
 ```
 
 pacstrap -K /mnt base linux linux-firmware
-genfstab -U /mnt >> /mnt/etc/fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
