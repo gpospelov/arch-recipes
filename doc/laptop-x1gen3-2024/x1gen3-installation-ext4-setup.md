@@ -51,7 +51,7 @@ pacman -S konsole gwenview kcolorchooser dolphin okular
 ## Other small utilities
 
 ```
-pacman -S htop tree mlocate zip unzip wget tokei pacman-contrib screen ncdu
+pacman -S htop tree mlocate zip unzip wget tokei pacman-contrib screen ncdu screen
 sudo /sbin/updatedb  # for locate
 ```
 
@@ -191,7 +191,7 @@ systemctl --user start pipewire
 ## skype, teams
 
 ```
-yay -s skype
+yay -s skypeforlinux-bin
 yay -s teams
 ```
 
@@ -201,8 +201,8 @@ pacman -S elisa
 
 ## Development
 
-cmake benchmark gtest libxml2 gdb valgrind gperf gcc clang
-qt5 qtcreator
+cmake benchmark gtest libxml2 gdb valgrind gperf gcc clang llvm
+qt5 qtcreator breeze5
 
 ## Qt creator config
 
@@ -249,18 +249,16 @@ Edit / Preferences / Analyzer
 
 cppcoreguidelines-pro-type-reinterpret-cast
 
-> Settings
+> Settings -> Environment
 PROJECTS=/home/pospelov/development/iter/projects
 MYBUILD=build/Desktop-Debug
 EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base/
 EPICS_HOST_ARCH=linux-x86_64
 PVXS_DIR=/home/pospelov/development/iter/extern/epics/pvxs/
+MYPLUGIN=build/Desktop-Debug/lib/sequencer/plugins
 
-EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base/
-PROJECTS=/home/pospelov/development/iter/projects
-EPICS_HOST_ARCH=linux-x86_64
-MYBUILD=build/Desktop-Debug
-LD_LIBRARY_PATH=${PROJECTS}/sequencer-plugin-epics/build-debug/lib/sequencer/plugins:${PROJECTS}/sequencer-plugin-control/build-debug/lib/sequencer/plugins:${PROJECTS}/sequencer-plugin-mathexpr/build-debug/lib/sequencer/plugins:${EPICS_BASE}/lib/${EPICS_HOST_ARCH}:${PVXS_DIR}/lib/${EPICS_HOST_ARCH}
+Sequencer-gui project settings / Environment
+LD_LIBRARY_PATH=${PROJECTS}/sequencer-plugin-epics/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-sup/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-control/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-mathexpr/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-system/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-strings/${MYPLUGIN}:${EPICS_BASE}/lib/${EPICS_HOST_ARCH}:${PVXS_DIR}/lib/${EPICS_HOST_ARCH}
 
 ```
 
