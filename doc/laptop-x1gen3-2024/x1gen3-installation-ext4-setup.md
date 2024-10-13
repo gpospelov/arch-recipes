@@ -204,6 +204,14 @@ pacman -S elisa
 cmake benchmark gtest libxml2 gdb valgrind gperf gcc clang llvm
 qt5 qtcreator breeze5
 
+## Razer drivers
+
+
+sudo pacman -S linux-headers openrazer-meta-git razergenie
+reboot
+
+> run razergwnie
+
 ## Qt creator config
 
 ```

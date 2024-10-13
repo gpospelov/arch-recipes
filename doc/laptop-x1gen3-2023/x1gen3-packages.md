@@ -52,7 +52,7 @@ https://wiki.archlinux.org/title/SDDM
 
 - 96, scale 100%
 - 144, scale 150%
-
+pacman -S ntfs-3g exfat-utils
 ```
 /etc/sddm.conf.d/dpi.conf
 
