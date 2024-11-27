@@ -132,7 +132,7 @@ makepkg -si
 
 I solved this problem by editing /etc/UPower/UPower.conf and changing IgnoreLid=false to IgnoreLid=true at the end of the file.
 
-# Adding new partition
+## Adding new partition
 
 ```
 # verifies your current version of /etc/fstab without reboot
@@ -141,4 +141,14 @@ findmnt --verify --verbose
 # gives you UUID of your partition
 blkid /dev/nvme1n1p1
 
+```
+
+## Black sceren in Plasma/Wayland/Nvidia card when in full screen mode
+
+- [Plasma 6 Wayland+Nvidia black screen and mouse cursor only](https://bbs.archlinux.org/viewtopic.php?id=293741)
+
+```
+# /etc/modprobe.d/nvidia.conf,
+options nvidia_drm modeset=1
+options nvidia_drm fbdev=1
 ```
