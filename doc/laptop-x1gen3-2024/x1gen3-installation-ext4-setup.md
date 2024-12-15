@@ -270,3 +270,51 @@ LD_LIBRARY_PATH=${PROJECTS}/sequencer-plugin-epics/${MYPLUGIN}:${PROJECTS}/seque
 
 ```
 
+## Avahi network zero configuration
+
+```
+
+pacman -S nss-mdns avahi
+
+# change line /etc/nsswitch.conf 
+#hosts: mymachines resolve [!UNAVAIL=return] files myhostname dns
+mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns
+
+sudo systemctl enable avahi-daemon.service
+
+avahi-resolve-host-name pi5.local
+# интересно, сначало показал mac-address, а после успешного ssh стал показывать IP
+avahi-browse --all --ignore-local --resolve --terminate
+
+```
+
+## Printing 
+
+```
+pacman -S  cups
+
+systemctl enable cups
+systemctl start cups
+
+see cups at http://localhost:631
+```
+
+## Installing printer Canon G500
+
+- must be a better way but...
+
+```
+https://askubuntu.com/questions/1164660/driver-for-new-canon-ink-tank-printers
+
+#pacman -S system-config-printer foomatic-db-gutenprint-ppds gutenprint
+pacman -S system-config-printer cnijfilter2
+
+- downloaded driver from
+https://www.canon-europe.com/support/consumer/products/printers/pixma/g-series/pixma-g5050.html?type=drivers&language=en&os=linux%20(64-bit)
+
+- Printer is in LAN mode, read IP from printer panel
+From KDE Plasma in printer settings added printer
+ipp://192.168.1.209/ipp/print
+and add manually pdd file as a driver from just installed driver source
+<driver-source>/cnijfilter2-source-5.90-1/ppd/canong5000.ppd
+```
