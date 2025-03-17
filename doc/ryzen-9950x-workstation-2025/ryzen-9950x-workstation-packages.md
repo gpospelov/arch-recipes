@@ -167,8 +167,15 @@ export PAGER=less
 
 ## VisualStudio
 
+https://www.reddit.com/r/archlinux/comments/pyrcvk/cc_extension_doesnt_show_up_on_vs_code/
+The code package in the repos uses the open-vsix.org repositories, as Microsoft's EULA prevents unofficial builds from using the official ones. Use visual-studio-code-bin. 
+Alternatively you can install code-marketplace from AUR which adds a Pacman hook to edit a config file of the code package to enable the MS repositories. 
+
+
 ```
-yay -S vscode
+#yay -S vscode
+yay -S visual-studio-code-bin
+
 ```
 
 ### Extensions
@@ -322,7 +329,17 @@ k10temp-pci-00c3 value
 
 kcompare kcachegrind adwaita-qt5 adwaita-qt6
 
-
 ## Webcam
 
 cameractrls (cameractrlsgtk4)
+
+## Virtualbox
+
+```
+
+pacman -S virtualbox
+# and select mirror "virtualbox-host-modules-arch"
+usermod -aG vboxusers jamesbond
+
+```
+
