@@ -326,3 +326,14 @@ kcompare kcachegrind adwaita-qt5 adwaita-qt6
 ## Webcam
 
 cameractrls (cameractrlsgtk4)
+
+## Virtualbox
+
+```
+
+pacman -S virtualbox
+# and select mirror "virtualbox-host-modules-arch"
+usermod -aG vboxusers jamesbond
+
+```
+
