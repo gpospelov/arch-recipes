@@ -167,20 +167,13 @@ export PAGER=less
 
 ## VisualStudio
 
-<<<<<<< HEAD
-```
-yay -S vscode
-=======
 https://www.reddit.com/r/archlinux/comments/pyrcvk/cc_extension_doesnt_show_up_on_vs_code/
 The code package in the repos uses the open-vsix.org repositories, as Microsoft's EULA prevents unofficial builds from using the official ones. Use visual-studio-code-bin. 
 Alternatively you can install code-marketplace from AUR which adds a Pacman hook to edit a config file of the code package to enable the MS repositories. 
 
-
 ```
 #yay -S vscode
 yay -S visual-studio-code-bin
-
->>>>>>> origin/master
 ```
 
 ### Extensions
@@ -203,13 +196,7 @@ systemctl --user start pipewire
 ## skype, teams
 
 ```
-<<<<<<< HEAD
-yay -s skypeforlinux-bin
-yay -s teams
-=======
-yay -S skypeforlinux-bin
 yay -S teams
->>>>>>> origin/master
 ```
 
 ## Music player
@@ -237,11 +224,7 @@ Settings > Built And Run > General > [x] Save All files before the build
 
 Settings > Kits > Manual(Desktop) > Compiler C/C++ -> gcc
 
-<<<<<<< HEAD
-# Settings Testing / Automatically Run All
-=======
 # Settings Testing /General/  Automatically Run All
->>>>>>> origin/master
 
 # Go to C++ General and change indentation/tabs to 2 spaces
   Use Custom Settings, new profile COA
@@ -257,20 +240,7 @@ Setting / Version Control / Git / Instant Blame
 
 # shortcuts
 Edit / Preferences / Environment /  Keyboard
-<<<<<<< HEAD
-SwitchHeaderSource       alt-o (it was F4, remember SideBarOpenDocument conflicts with alt-o)
-ClangFormat FormatFile   Ctrl+Shift+I (it was no, remember CppEditor.OpenIncludeHierarchy and Help.index conflicts with Ctrl-Shift-o)
-GoTo                     Ctrl+G
-FollowSymbolUnderCursor  F12 (was F2)
 
-# Analyzer
-Edit / Preferences / Analyzer
-- make new custom diagnostic configuration
-  - Clang-Tidy Checks - Use .clang-tidy config file
-  - Clazy-Checks - disable non-pod-global-static
-
-cppcoreguidelines-pro-type-reinterpret-cast
-=======
 SwitchHeaderSource       F4 (i.e. as default)
 ClangFormat FormatFile   Ctrl+Shift+I (it was no, remember CppEditor.OpenIncludeHierarchy and Help.index conflicts with Ctrl-Shift-o)
 GoTo                     Ctrl+G
@@ -283,7 +253,6 @@ FollowSymbolUnderCursor  F2 (i.e. default)
 #   - Clazy-Checks - disable non-pod-global-static
 # 
 # cppcoreguidelines-pro-type-reinterpret-cast
->>>>>>> origin/master
 
 > Settings -> Environment
 PROJECTS=/home/pospelov/development/iter/projects
@@ -291,11 +260,7 @@ MYBUILD=build/Desktop-Debug
 EPICS_BASE=/home/pospelov/development/iter/extern/epics/epics-base/
 EPICS_HOST_ARCH=linux-x86_64
 PVXS_DIR=/home/pospelov/development/iter/extern/epics/pvxs/
-<<<<<<< HEAD
-MYPLUGIN=build/Desktop-Debug/lib/sequencer/plugins
-=======
 MYPLUGIN=build/Desktop-Debug/lib/oac-tree/plugins
->>>>>>> origin/master
 
 Sequencer-gui project settings / Environment
 LD_LIBRARY_PATH=${PROJECTS}/sequencer-plugin-epics/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-sup/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-control/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-mathexpr/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-system/${MYPLUGIN}:${PROJECTS}/sequencer-plugin-strings/${MYPLUGIN}:${EPICS_BASE}/lib/${EPICS_HOST_ARCH}:${PVXS_DIR}/lib/${EPICS_HOST_ARCH}
@@ -350,9 +315,6 @@ ipp://192.168.1.209/ipp/print
 and add manually pdd file as a driver from just installed driver source
 <driver-source>/cnijfilter2-source-5.90-1/ppd/canong5000.ppd
 ```
-<<<<<<< HEAD
-=======
-
 ## Monitoring frequences
 
 turbostat - to see frequences
@@ -377,5 +339,3 @@ pacman -S virtualbox
 usermod -aG vboxusers jamesbond
 
 ```
-
->>>>>>> origin/master
